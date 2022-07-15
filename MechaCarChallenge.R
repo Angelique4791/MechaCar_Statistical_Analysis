@@ -1,6 +1,8 @@
 install.packages("tidyverse")
 library(tidyverse)
 
+####################### Deliverable 1: Linear regression of MPG ##########################
+
 
 mecha_mpg <- read.csv(file = 'C:/Users/seang/OneDrive/Documents/R_Analysis/01_Demo/MechaCar_mpg.csv',check.names=F,stringsAsFactors = F)
 
@@ -27,6 +29,8 @@ summary(lm(mpg ~ vehicle_length + vehicle_weight + spoiler_angle + ground_cleara
 
 ####################### End Linear Regression ##########################
 
+####################### Deliverable 2: Summary statistics of suspension coils by PSI ##########################
+
 # Read the Suspension_Coil.csv
 psi_analysis <- read.csv(file = 'C:/Users/seang/OneDrive/Documents/R_Analysis/01_Demo/Suspension_Coil.csv',check.names=F,stringsAsFactors = F)
 
@@ -34,6 +38,21 @@ psi_analysis <- read.csv(file = 'C:/Users/seang/OneDrive/Documents/R_Analysis/01
 total_summary <- psi_analysis %>% summarize(Mean=mean(PSI), Median=median(PSI), Variance=var(PSI), SD=sd(PSI))  #create summary table
 
 lot_summary <- psi_analysis %>% group_by(Manufacturing_Lot) %>% summarize(Mean=mean(PSI), Median=median(PSI), Variance=var(PSI), SD=sd(PSI))  #create summary table
+
+
+###################### End Coil Summary Stats ###############################
+
+
+####################### Deliverable 3: T-Test of Sample data to Population data ##########################
+
+# T-test of total_summary to population
+psi_test1 <- t.test(log10(psi_analysis$PSI),mu=mean(log10(total_summary$Mean))) 
+
+# T-test of  lot_summary to population
+psi_test2 <- t.test(log10(psi_analysis$PSI),mu=mean(log10(lot_summary$Mean))) #compare sample versus population means
+
+
+
 
 
 
