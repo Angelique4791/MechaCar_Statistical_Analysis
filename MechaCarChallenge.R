@@ -46,13 +46,16 @@ lot_summary <- psi_analysis %>% group_by(Manufacturing_Lot) %>% summarize(Mean=m
 ####################### Deliverable 3: T-Test of Sample data to Population data ##########################
 
 # T-test of total_summary to population
-psi_test1 <- t.test(log10(psi_analysis$PSI),mu=mean(log10(total_summary$Mean))) 
+total_psi_test <- t.test(log10(psi_analysis$PSI),mu=mean(log10(total_summary$Mean))) 
 
-# T-test of  lot_summary to population
-psi_test2 <- t.test(log10(psi_analysis$PSI),mu=mean(log10(lot_summary$Mean))) #compare sample versus population means
+# T-test of Manufacturing_Lot 1
+psi_lot1 <- lot_summary[1,2]
+psi_lot1_ttest <- t.test(log10(psi_analysis$PSI),mu=mean(log10(psi_lot1$Mean))) #compare sample versus population means
 
+# T-test of Manufacturing_Lot 2
+psi_lot2 <- lot_summary[2,2]
+psi_lot2_ttest <- t.test(log10(psi_analysis$PSI),mu=mean(log10(psi_lot2$Mean))) #compare sample versus population means
 
-
-
-
-
+# T-test of Manufacturing_Lot 3
+psi_lot3 <- lot_summary[3,2]
+psi_lot3_ttest <- t.test(log10(psi_analysis$PSI),mu=mean(log10(psi_lot3$Mean))) #compare sample versus population means
